@@ -7,7 +7,7 @@ public class Main {
         Random random = new Random();
 
         String play_again;
-        int random_num, option, guess, attempts;
+        int random_num, option, guess, maxAttempts, min = 0, max, attempts;
         boolean checking_opt, playing = true;
 
         //welcome message
@@ -35,9 +35,10 @@ public class Main {
             
             switch (option) {
                 case 1 ->{
-                    attempts = 5;
-                    guess = 11;
-                    random_num = random.nextInt(0,11);
+                    maxAttempts = 5;
+                    max = 11;
+                    attempts = maxAttempts;
+                    random_num = random.nextInt(min, max);
                     System.out.println("\nThe number were selected!");
                     //repeat till the guess is equal the random number or till have no remaining attempts
                     do{
@@ -53,11 +54,11 @@ public class Main {
                                 System.out.println("Hint: The number is higher.");
                             }
                         }    
-                    }while(attempts != 0 && guess != random_num);
+                    }while(guess != random_num && attempts != 0);
                     //if the guess is right and within the number of remaining attempts, you won
-                    if(guess == random_num && attempts > 0){
+                    if(guess == random_num){
                         System.out.println("\nCongratulations, you won!");
-                        System.out.printf("The number was %d and you guessed in %d attempts!", random_num, Math.abs(attempts-5));
+                        System.out.printf("The number was %d and you guessed in %d attempts!", random_num, Math.abs(attempts - maxAttempts));
                     }
                     //otherwise, you lose.
                     else{
@@ -77,9 +78,10 @@ public class Main {
                 }
                     
                 case 2 ->{
-                    attempts = 15;
-                    guess = 31;
-                    random_num = random.nextInt(0,31);
+                    maxAttempts = 15;
+                    max = 31;
+                    attempts = maxAttempts;
+                    random_num = random.nextInt(min, max);
                     System.out.println("\nThe number were selected!");
 
                     do{
@@ -95,18 +97,18 @@ public class Main {
                                 System.out.println("Hint: The number is higher.");
                             }
                         }    
-                    }while(attempts != 0 && guess != random_num);
+                    }while(guess != random_num && attempts != 0);
 
-                    if(guess == random_num && attempts > 0){
+                    if(guess == random_num){
                         System.out.println("\nCongratulations, you won!");
-                        System.out.printf("The number was %d and you guessed in %d attempts!", random_num, Math.abs(attempts-15));
+                        System.out.printf("The number was %d and you guessed in %d attempts!", random_num, Math.abs(attempts - maxAttempts));
                     }
 
                     else{
                         System.out.println("\nI'm sorry, you lost!");
                         System.out.printf("The number was %d.", random_num);
                     }
-                    //continue to play or not
+
                     System.out.print("\nDo you want to play again? (Y/N): ");
                     play_again = scanner.next().toUpperCase();
                     if (play_again.contains("Y")){
@@ -119,9 +121,10 @@ public class Main {
                 }
 
                 case 3 ->{
-                    attempts = 25;
-                    guess = 51;
-                    random_num = random.nextInt(0,51);
+                    maxAttempts = 25;
+                    max = 51;
+                    attempts = maxAttempts;
+                    random_num = random.nextInt(min, max);
                     System.out.println("\nThe number were selected!");
 
                     do{
@@ -137,11 +140,11 @@ public class Main {
                                 System.out.println("Hint: The number is higher.");
                             }
                         }    
-                    }while(attempts != 0 && guess != random_num);
+                    }while(guess != random_num && attempts != 0);
 
-                    if(guess == random_num && attempts > 0){
+                    if(guess == random_num){
                         System.out.println("\nCongratulations, you won!");
-                        System.out.printf("The number was %d and you guessed in %d attempts!", random_num, Math.abs(attempts-25));
+                        System.out.printf("The number was %d and you guessed in %d attempts!", random_num, Math.abs(attempts - maxAttempts));
                     }
 
                     else{
