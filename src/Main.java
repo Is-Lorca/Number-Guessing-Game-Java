@@ -6,34 +6,162 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         Random random = new Random();
 
-        int random_num, option, guess;
+        String play_again;
+        int random_num, option, guess, attempts;
+        boolean checking_opt, playing = true;
 
         //welcome message
         System.out.println("Welcome to Number Guessing!");
-        System.out.println("Here, we have 3 levels:");
-        System.out.println("Easy - Guess between 0-10;\nMedium - Guess between 0-30;\nHard - Guess between 0-50");
-        System.out.println("Choose the number of the level to start!\n");
+        System.out.println("We have 3 levels:");
+        System.out.println("Easy - Guess between 0-10;\nMedium - Guess between 0-30;\nHard - Guess between 0-50.\n");
+        System.out.println("You have attempts equivalent to the difficulty you choose.");
+        System.out.println("Easy - 5 attempts;\nMedium - 15 attempts;\nHard - 25 attempts.");
 
         //selecting level
-        System.out.println("1-Easy;\n2-Medium;\n3-Hard.");
-        option = scanner.nextInt();
-
-        switch (option) {
-            case 1 -> {
-
-            }
+        do{
+            System.out.println("\nChoose the number of the level to start!");
+            do{
+                System.out.println("1-Easy;\n2-Medium;\n3-Hard.");
+                System.out.println("Please select a valid option.");
+                option = scanner.nextInt();
+                //checking if option is valid
+                if (option >= 1 && option <= 3){
+                    checking_opt = true;
+                }else{
+                    checking_opt = false;
+                }
+                //repeat if it's not
+            }while(!checking_opt);
             
-            case 2 ->{
+            switch (option) {
+                case 1 ->{
+                    attempts = 5;
+                    guess = 11;
+                    random_num = random.nextInt(0,11);
+                    System.out.println("\nThe number were selected!");
+                    //repeat till the guess is equal the random number or till have no remaining attempts
+                    do{
+                        System.out.printf("You have %d attempts.\n", attempts);
+                        System.out.print("Try to guess: ");
+                        guess = scanner.nextInt();
+                        System.out.print("\n");
+                        attempts -= 1;
+                        if(guess != random_num && attempts != 0){
+                            if (guess > random_num){
+                                System.out.println("Hint: The number is lower.");
+                            }else{
+                                System.out.println("Hint: The number is higher.");
+                            }
+                        }    
+                    }while(attempts != 0 && guess != random_num);
+                    //if the guess is right and within the number of remaining attempts, you won
+                    if(guess == random_num && attempts > 0){
+                        System.out.println("\nCongratulations, you won!");
+                        System.out.printf("The number was %d and you guessed in %d attempts!", random_num, Math.abs(attempts-5));
+                    }
+                    //otherwise, you lose.
+                    else{
+                        System.out.println("\nI'm sorry, you lost!");
+                        System.out.printf("The number was %d.", random_num);
+                    }
+                    //continue to play or not
+                    System.out.print("\nDo you want to play again? (Y/N): ");
+                    play_again = scanner.next().toUpperCase();
+                    if (play_again.contains("Y")){
+                        playing = true;
+                    }
+                    else{
+                        System.out.println("\nThank you for playing!");
+                        playing = false;
+                    }
+                }
+                    
+                case 2 ->{
+                    attempts = 15;
+                    guess = 31;
+                    random_num = random.nextInt(0,31);
+                    System.out.println("\nThe number were selected!");
 
+                    do{
+                        System.out.printf("You have %d attempts.\n", attempts);
+                        System.out.print("Try to guess: ");
+                        guess = scanner.nextInt();
+                        System.out.print("\n");
+                        attempts -= 1;
+                        if(guess != random_num && attempts != 0){
+                            if (guess > random_num){
+                                System.out.println("Hint: The number is lower.");
+                            }else{
+                                System.out.println("Hint: The number is higher.");
+                            }
+                        }    
+                    }while(attempts != 0 && guess != random_num);
+
+                    if(guess == random_num && attempts > 0){
+                        System.out.println("\nCongratulations, you won!");
+                        System.out.printf("The number was %d and you guessed in %d attempts!", random_num, Math.abs(attempts-15));
+                    }
+
+                    else{
+                        System.out.println("\nI'm sorry, you lost!");
+                        System.out.printf("The number was %d.", random_num);
+                    }
+                    //continue to play or not
+                    System.out.print("\nDo you want to play again? (Y/N): ");
+                    play_again = scanner.next().toUpperCase();
+                    if (play_again.contains("Y")){
+                        playing = true;
+                    }
+                    else{
+                        System.out.println("\nThank you for playing!");
+                        playing = false;
+                    }
+                }
+
+                case 3 ->{
+                    attempts = 25;
+                    guess = 51;
+                    random_num = random.nextInt(0,51);
+                    System.out.println("\nThe number were selected!");
+
+                    do{
+                        System.out.printf("You have %d attempts.\n", attempts);
+                        System.out.print("Try to guess: ");
+                        guess = scanner.nextInt();
+                        System.out.print("\n");
+                        attempts -= 1;
+                        if(guess != random_num && attempts != 0){
+                            if (guess > random_num){
+                                System.out.println("Hint: The number is lower.");
+                            }else{
+                                System.out.println("Hint: The number is higher.");
+                            }
+                        }    
+                    }while(attempts != 0 && guess != random_num);
+
+                    if(guess == random_num && attempts > 0){
+                        System.out.println("\nCongratulations, you won!");
+                        System.out.printf("The number was %d and you guessed in %d attempts!", random_num, Math.abs(attempts-25));
+                    }
+
+                    else{
+                        System.out.println("\nI'm sorry, you lost!");
+                        System.out.printf("The number was %d.", random_num);
+                    }
+
+                    System.out.print("\nDo you want to play again? (Y/N): ");
+                    play_again = scanner.next().toUpperCase();
+                    if (play_again.contains("Y")){
+                        playing = true;
+                    }
+                    else{
+                        System.out.println("\nThank you for playing!");
+                        playing = false;
+                    }
+                }
             }
 
-            case 3 ->{
-
-            }
-
-            default -> System.out.println("Please select a valid option.");
-                
-        }
-
+        }while(playing);
+        scanner.close();
     }
 }
