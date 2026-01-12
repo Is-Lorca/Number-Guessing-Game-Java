@@ -24,6 +24,7 @@ This project was developed to practice and reinforce:
 - Conditional statements (`if/else`, `switch`)
 - User input handling
 - Random number generation
+- Creating Methods 
 - Basic game flow control
 
 It is part of my personal portfolio and represents my progress in learning Java.
