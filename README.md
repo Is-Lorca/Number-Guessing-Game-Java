@@ -83,5 +83,3 @@ It is part of my personal portfolio and represents my progress in learning Java.
 
 This project focuses on clarity and logic rather than advanced Java features.  
 It was intentionally kept simple to strengthen fundamental concepts.
-
-Possibly in the future I will be able to update it with more mechanics and more dynamic and better-structured code.
