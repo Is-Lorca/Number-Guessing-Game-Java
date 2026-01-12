@@ -4,10 +4,8 @@ public class Main {
     public static void main(String[] args) {
         //variables
         Scanner scanner = new Scanner(System.in);
-        Random random = new Random();
 
-        String play_again;
-        int random_num, option, guess, maxAttempts, min = 0, max, attempts;
+        int option, maxAttempts, max;
         boolean checking_opt, playing = true;
 
         //welcome message
@@ -37,134 +35,80 @@ public class Main {
                 case 1 ->{
                     maxAttempts = 5;
                     max = 11;
-                    attempts = maxAttempts;
-                    random_num = random.nextInt(min, max);
-                    System.out.println("\nThe number were selected!");
-                    //repeat till the guess is equal the random number or till have no remaining attempts
-                    do{
-                        System.out.printf("You have %d attempts.\n", attempts);
-                        System.out.print("Try to guess: ");
-                        guess = scanner.nextInt();
-                        System.out.print("\n");
-                        attempts -= 1;
-                        if(guess != random_num && attempts != 0){
-                            if (guess > random_num){
-                                System.out.println("Hint: The number is lower.");
-                            }else{
-                                System.out.println("Hint: The number is higher.");
-                            }
-                        }    
-                    }while(guess != random_num && attempts != 0);
-                    //if the guess is right and within the number of remaining attempts, you won
-                    if(guess == random_num){
-                        System.out.println("\nCongratulations, you won!");
-                        System.out.printf("The number was %d and you guessed in %d attempts!", random_num, Math.abs(attempts - maxAttempts));
-                    }
-                    //otherwise, you lose.
-                    else{
-                        System.out.println("\nI'm sorry, you lost!");
-                        System.out.printf("The number was %d.", random_num);
-                    }
-                    //continue to play or not
-                    System.out.print("\nDo you want to play again? (Y/N): ");
-                    play_again = scanner.next().toUpperCase();
-                    if (play_again.contains("Y")){
-                        playing = true;
-                    }
-                    else{
-                        System.out.println("\nThank you for playing!");
-                        playing = false;
-                    }
+                    coreGame(maxAttempts, max, scanner);
+                    playing = playAgain(scanner);
                 }
                     
                 case 2 ->{
                     maxAttempts = 15;
                     max = 31;
-                    attempts = maxAttempts;
-                    random_num = random.nextInt(min, max);
-                    System.out.println("\nThe number were selected!");
+                    coreGame(maxAttempts, max, scanner);
+                    playing = playAgain(scanner);
 
-                    do{
-                        System.out.printf("You have %d attempts.\n", attempts);
-                        System.out.print("Try to guess: ");
-                        guess = scanner.nextInt();
-                        System.out.print("\n");
-                        attempts -= 1;
-                        if(guess != random_num && attempts != 0){
-                            if (guess > random_num){
-                                System.out.println("Hint: The number is lower.");
-                            }else{
-                                System.out.println("Hint: The number is higher.");
-                            }
-                        }    
-                    }while(guess != random_num && attempts != 0);
-
-                    if(guess == random_num){
-                        System.out.println("\nCongratulations, you won!");
-                        System.out.printf("The number was %d and you guessed in %d attempts!", random_num, Math.abs(attempts - maxAttempts));
-                    }
-
-                    else{
-                        System.out.println("\nI'm sorry, you lost!");
-                        System.out.printf("The number was %d.", random_num);
-                    }
-
-                    System.out.print("\nDo you want to play again? (Y/N): ");
-                    play_again = scanner.next().toUpperCase();
-                    if (play_again.contains("Y")){
-                        playing = true;
-                    }
-                    else{
-                        System.out.println("\nThank you for playing!");
-                        playing = false;
-                    }
                 }
 
                 case 3 ->{
                     maxAttempts = 25;
                     max = 51;
-                    attempts = maxAttempts;
-                    random_num = random.nextInt(min, max);
-                    System.out.println("\nThe number were selected!");
-
-                    do{
-                        System.out.printf("You have %d attempts.\n", attempts);
-                        System.out.print("Try to guess: ");
-                        guess = scanner.nextInt();
-                        System.out.print("\n");
-                        attempts -= 1;
-                        if(guess != random_num && attempts != 0){
-                            if (guess > random_num){
-                                System.out.println("Hint: The number is lower.");
-                            }else{
-                                System.out.println("Hint: The number is higher.");
-                            }
-                        }    
-                    }while(guess != random_num && attempts != 0);
-
-                    if(guess == random_num){
-                        System.out.println("\nCongratulations, you won!");
-                        System.out.printf("The number was %d and you guessed in %d attempts!", random_num, Math.abs(attempts - maxAttempts));
-                    }
-
-                    else{
-                        System.out.println("\nI'm sorry, you lost!");
-                        System.out.printf("The number was %d.", random_num);
-                    }
-
-                    System.out.print("\nDo you want to play again? (Y/N): ");
-                    play_again = scanner.next().toUpperCase();
-                    if (play_again.contains("Y")){
-                        playing = true;
-                    }
-                    else{
-                        System.out.println("\nThank you for playing!");
-                        playing = false;
-                    }
+                    coreGame(maxAttempts, max, scanner);
+                    playing = playAgain(scanner);
                 }
             }
 
         }while(playing);
         scanner.close();
+    }
+
+    static void coreGame(int maxAttempts, int max, Scanner scanner){
+        //variables
+        Random random = new Random();
+
+        int random_num, guess, min = 0, attempts;
+
+        attempts = maxAttempts;
+        random_num = random.nextInt(min, max);
+        System.out.println("\nThe number were selected!");
+        //repeat till the guess is equal the random number or till have no remaining attempts
+        do{
+            System.out.printf("You have %d attempts.\n", attempts);
+            System.out.print("Try to guess: ");
+            guess = scanner.nextInt();
+            System.out.print("\n");
+            attempts -= 1;
+            if(guess != random_num && attempts != 0){
+            if (guess > random_num){
+                System.out.println("Hint: The number is lower.");
+            }else{
+                System.out.println("Hint: The number is higher.");
+            }
+            }    
+        }while(guess != random_num && attempts != 0);
+        //if the guess is right and within the number of remaining attempts, you won
+        if(guess == random_num){
+            System.out.println("\nCongratulations, you won!");
+            System.out.printf("The number was %d and you guessed in %d attempts!", random_num, Math.abs(attempts - maxAttempts));
+        }
+        //otherwise, you lose.
+        else{
+            System.out.println("\nI'm sorry, you lost!");
+            System.out.printf("The number was %d.", random_num);
+        }
+    }
+    static boolean playAgain(Scanner scanner){
+        //variables
+        char play_again;
+        boolean playing;
+
+        //continue to play or not
+        System.out.print("\nDo you want to play again? (Y/N): ");
+        play_again = scanner.next().toUpperCase().charAt(0);
+        if (play_again == 'Y'){
+            playing = true;
+        }
+        else{
+            System.out.println("\nThank you for playing!");
+            playing = false;
+        }
+        return playing;
     }
 }
